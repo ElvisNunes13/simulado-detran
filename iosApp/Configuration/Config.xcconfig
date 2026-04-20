@@ -1,0 +1,7 @@
+TEAM_ID=
+
+PRODUCT_NAME=simulado-detran
+PRODUCT_BUNDLE_IDENTIFIER=simulado.example.project.simulado-detran$(TEAM_ID)
+
+CURRENT_PROJECT_VERSION=1
+MARKETING_VERSION=1.0
