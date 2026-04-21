@@ -1,16 +1,16 @@
-import org.jetbrains.compose.ExperimentalComposeLibrary
-
 plugins {
     alias(libs.plugins.kotlin.multiplatform)
     alias(libs.plugins.kotlin.serialization)
     alias(libs.plugins.compose.multiplatform)
     alias(libs.plugins.compose.compiler)
-    alias(libs.plugins.android.application)
+    alias(libs.plugins.android.application)  // ← precisa vir antes do kotlin block
 }
 
 kotlin {
     androidTarget {
-        compilations.all { kotlinOptions { jvmTarget = "17" } }
+        compilerOptions {
+            jvmTarget.set(org.jetbrains.kotlin.gradle.dsl.JvmTarget.JVM_17)
+        }
     }
     listOf(iosX64(), iosArm64(), iosSimulatorArm64()).forEach { target ->
         target.binaries.framework {
@@ -40,10 +40,10 @@ kotlin {
 }
 
 android {
-    namespace   = "br.com.simulado.detran"
+    namespace   = "simulado.example.project"
     compileSdk  = 35
     defaultConfig {
-        applicationId = "br.com.simulado.detran"
+        applicationId = "simulado.example.project"
         minSdk        = 24
         targetSdk     = 35
         versionCode   = 1
@@ -56,6 +56,6 @@ android {
 }
 
 compose.resources {
-    publicResClass  = true
-    packageOfResClass = "br.com.simulado.detran.generated.resources"
+    publicResClass    = true
+    packageOfResClass = "simulado.example.project.generated.resources"
 }
